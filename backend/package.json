@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
+    "postinstall": "cd ../frontend && npm install && cd ../backend && npm run build:ui",
     "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
   },
