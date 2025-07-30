@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Form from "./components/Form";
 import Search from "./components/Search";
 import Persons from "./components/Persons";
-import Notification from "./components/Notifcation.jsx";
+import Notification from "./components/Notification.jsx";
 import entryService from "./services/entry.js";
 import "./index.css";
 
