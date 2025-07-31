@@ -1,3 +1,11 @@
+body {
+    background-color: #fadf09;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .error {
     color: red;
     background: lightgrey;
@@ -16,4 +24,17 @@
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+.container {
+    background-color: white;
+    padding: 50px;
+    border: black solid 3px;
+    box-shadow: 5px 5px black;
+}
+
+.container > h2 {
+    font-weight: 800;
+    font-size: 40px;
+    text-transform: uppercase;
 }

@@ -1,3 +1,5 @@
+import "./Form.css";
+
 const Search = ({search, setSearch}) => {
 
     const handleSearch = (event) => {
@@ -5,9 +7,15 @@ const Search = ({search, setSearch}) => {
     };
 
     return (
-        <div>
-            search:
-            <input value={search} onChange={handleSearch}></input>
+        <div className={"input-box"}>
+            Search:
+            <input 
+            value={search} 
+            onChange={handleSearch}
+            className={"input-field"}
+            placeholder={"Search..."}>
+
+            </input>
         </div>
     );
 };

@@ -1,3 +1,5 @@
+import "./Form.jsx"
+
 import entryService from "../services/entry.js";
 
 const Persons = ({ persons, search, setPersons }) => {
@@ -15,11 +17,18 @@ const Persons = ({ persons, search, setPersons }) => {
     };
 
     return (
-        <ul>
+        <ul className={"person-list"}>
             {personsToShow.map((person) => (
-                <li key={person.name}>
-                    {person.name} {person.number}
-                    <button onClick={() => deleteEntry(person.id, person.name)}>
+                <li key={person.name}
+                    className={"person-item"}>
+                    {person.name} 
+                    <div className={"person-number"}>
+                        {person.number}
+                    </div>
+                    <button 
+                        onClick={() => deleteEntry(person.id, person.name)}
+                        className={"delete-button"}
+                    >
                         Delete
                     </button>
                 </li>

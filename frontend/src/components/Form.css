@@ -1,0 +1,66 @@
+body {
+    font-family: "Sora", sans-serif;
+}
+
+.person-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-box {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+
+.input-field {
+    width: 250px;
+    border: none;
+    border-bottom: solid gray 1px;
+}
+
+.add-button {
+    background-color: #30ff2d;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 2px 2px black;
+}
+
+.delete-button {
+    background-color: #f46926;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 2px 2px black;
+    grid-row: 1/2;
+    align-self: center;
+    grid-column: 2;
+}
+
+.person-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(247, 247, 247);
+    border: black solid 1px;
+}
+
+.person-item {
+    display: grid;
+    grid-template-columns: 1fr 0fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.person-number {
+    grid-column: 1;
+    grid-row: 0;
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import entryService from "../services/entry.js";
+import "./Form.css";
 
 const Form = ({ persons, setPersons, setNotificationMessage, setNotificationType }) => {
     const [newName, setNewName] = useState("");
@@ -59,16 +60,24 @@ const Form = ({ persons, setPersons, setNotificationMessage, setNotificationType
     };
 
     return (
-        <form onSubmit={addName}>
-            <div>
-                name: <input value={newName} onChange={handleNameChange} />
+        <form onSubmit={addName} className={"person-form"}>
+            <div className={"input-box"}>
+                Name: <input 
+                    value={newName} 
+                    onChange={handleNameChange} 
+                    className={"input-field"}
+                    placeholder={"Enter name"}/>
+            </div>
+            <div className={"input-box"}>
+                Number:
+                <input 
+                    value={newNumber} 
+                    onChange={handlePhoneNumberChange} 
+                    className={"input-field"}
+                    placeholder={"Enter phone number"}/>
             </div>
             <div>
-                number:
-                <input value={newNumber} onChange={handlePhoneNumberChange} />
-            </div>
-            <div>
-                <button type="submit">add</button>
+                <button type="submit" className="add-button">add</button>
             </div>
         </form>
     );

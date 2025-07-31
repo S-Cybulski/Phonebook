@@ -20,7 +20,7 @@ const App = () => {
     }, []);
 
     return (
-        <div>
+        <div className={"container"}>
             <h2>Phonebook</h2>
             <Notification
                 message={notificationMessage}
