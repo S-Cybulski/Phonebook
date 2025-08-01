@@ -1,6 +1,5 @@
 const express = require("express");
 const morgan = require("morgan");
-const cors = require("cors");
 
 const app = express();
 
@@ -8,7 +7,6 @@ morgan.token('body', function (req, res) {return JSON.stringify(req.body)})
 
 app.use(express.json());
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
-app.use(cors());
 app.use(express.static('dist'));
 
 let persons = [
@@ -61,7 +59,7 @@ app.get('/api/persons/:id', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id;
-    const persons = persons.filter(person => person.id === id);
+    persons = persons.filter(person => person.id !== id);
     response.status(204).end();
 });
 
@@ -83,7 +81,7 @@ app.post('/api/persons', (request, response) => {
         return response.status(400).json({
             error: 'number missing'
         });
-    } else if (!persons.find(personName => personName === body.name)) {
+    } else if (persons.find(personName => personName === body.name)) {
         return response.status(409).json({
             error: 'name must be unique'
         });
