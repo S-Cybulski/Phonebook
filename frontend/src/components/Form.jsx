@@ -77,7 +77,7 @@ const Form = ({ persons, setPersons, setNotificationMessage, setNotificationType
                     placeholder={"Enter phone number"}/>
             </div>
             <div>
-                <button type="submit" className="add-button">add</button>
+                <button type="submit" className="add-button">Add</button>
             </div>
         </form>
     );
