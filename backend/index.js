@@ -1,5 +1,25 @@
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+
+if (process.argv.length < 3) {
+    console.log("give password as argument");
+    process.exit(1);
+}
+
+const password = process.argv[2];
+
+const url = `mongodb+srv://test:${password}@phonebook.wt5n1ab.mongodb.net/phonebookApp?retryWrites=true&w=majority&appName=phonebook`;
+
+mongoose.set("strictQuery", false);
+mongoose.connect(url);
+
+const personSchema = new mongoose.Schema({
+    name: String,
+    number: String,
+});
+
+const Person = mongoose.model("Person", personSchema);
 
 const app = express();
 
@@ -7,7 +27,6 @@ morgan.token('body', function (req, res) {return JSON.stringify(req.body)})
 
 app.use(express.json());
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
-app.use(express.static('dist'));
 
 let persons = [
     {
@@ -44,11 +63,9 @@ app.get('/info', (request, response) => {
 });
 
 app.get('/api/persons', (request, response) => {
-    if (persons) {
-        response.json(persons)
-    } else {
-        response.status(404).end()
-    }
+    Person.find({}).then(personsObject => {
+        response.json(personsObject);
+    })
 });
 
 app.get('/api/persons/:id', (request, response) => {
@@ -59,7 +76,7 @@ app.get('/api/persons/:id', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id;
-    persons = persons.filter(person => person.id !== id);
+    const persons = persons.filter(person => person.id === id);
     response.status(204).end();
 });
 
@@ -81,7 +98,7 @@ app.post('/api/persons', (request, response) => {
         return response.status(400).json({
             error: 'number missing'
         });
-    } else if (persons.find(personName => personName === body.name)) {
+    } else if (!persons.find(personName => personName === body.name)) {
         return response.status(409).json({
             error: 'name must be unique'
         });
@@ -98,7 +115,7 @@ app.post('/api/persons', (request, response) => {
     response.json(person);
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
