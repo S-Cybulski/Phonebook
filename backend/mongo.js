@@ -20,13 +20,25 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model("Person", personSchema);
 
+const getPersons = () => {
+    Person.find({}).then((personsObject) => {
+        response.json(personsObject);
+    });
+};
+
+const findPerson = (id) => {
+    Person.find({id: id}).then((person) => {
+        response.json(person);
+    });
+};
+
 if (process.argv.length < 4) {
-    Person.find({}).then(result => {
-        result.forEach(person => {
-            console.log(person);
-        })
+    Person.find({}).then((result) => {
+        result.forEach((person) => {
+            console.log(`${person.name} ${person.number}`);
+        });
         mongoose.connection.close();
-    })
+    });
 } else if (process.argv.length < 5) {
     console.log(
         "Please provide number information in this format: node mongo.js <password> <name> <number>"
