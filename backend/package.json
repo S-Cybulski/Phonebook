@@ -9,7 +9,8 @@
     "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "dev": "node --watch index.js",
-    "install:start": "npm install; npm run postinstall; npm run build:ui; npm run start"
+    "install:start": "npm install; npm run postinstall; npm run build:ui; npm run start",
+    "build:start": "npm run build:ui; npm run start"
   },
   "author": "",
   "license": "ISC",
