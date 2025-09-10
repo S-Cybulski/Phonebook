@@ -1,3 +1,4 @@
+ 
 const mongoose = require("mongoose");
 const Person = require("./models/person.js");
 
@@ -19,7 +20,7 @@ if (process.argv.length < 4) {
         number: process.argv[4],
     });
 
-    person.save().then((result) => {
+    person.save().then(() => {
         console.log("person saved!");
         mongoose.connection.close();
     });
